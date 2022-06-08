@@ -35,31 +35,37 @@ r_trajectory = [0;0;0];
 %a_accelerometer_error = [1;2;3];
 
 %% Maximum force
+Fclim = 3000;
 
-Fc1_u = 30000;
-Fc1_l = -30000;
-Fc2_u = 30000;
-Fc2_l = -30000;
-Fc3_u = 30000;
-Fc3_l = -30000;
+Fc1_u = Fclim;
+Fc1_l = -Fclim;
+Fc2_u = Fclim;
+Fc2_l = -Fclim;
+Fc3_u = Fclim;
+Fc3_l = -Fclim;
 
-Ft1_u = 100000;
-Ft1_l = -100000;
-Ft2_u = 100000;
-Ft2_l = -100000;
-Ft3_u = 100000;
-Ft3_l = -100000;
-Ft4_u = 100000;
-Ft4_l = -100000;
+Ftlim = 3000;
+Fulim_TF = 5600;
+Fulim_BF = 2600;
+Fulim_Back = 3200;
 
-Fb1_u = 100000;
-Fb1_l = -100000;
-Fb2_u = 100000;
-Fb2_l = -100000;
-Fb3_u = 100000;
-Fb3_l = -100000;
-Fb4_u = 100000;
-Fb4_l = -100000;
+Ft1_u = Fulim_TF;
+Ft1_l = -Fulim_TF;
+Ft2_u = Fulim_TF;
+Ft2_l = -Fulim_TF;
+Ft3_u = Fulim_Back;
+Ft3_l = -Fulim_Back;
+Ft4_u = Fulim_Back;
+Ft4_l = -Fulim_Back;
+
+Fb1_u = Fulim_BF;
+Fb1_l = -Fulim_BF;
+Fb2_u = Fulim_BF;
+Fb2_l = -Fulim_BF;
+Fb3_u = Fulim_Back;
+Fb3_l = -Fulim_Back;
+Fb4_u = Fulim_Back;
+Fb4_l = -Fulim_Back;
 
 
 %% Linear Dynamics Kalman Filter
@@ -319,3 +325,43 @@ ti = -180:1:180;
 [XI_r, YI_r] = meshgrid(ti,ti);
 model_r = scatteredInterpolant(x, y, z, 'linear', 'linear');
 ZI_r = model_r(XI_r, YI_r);
+
+%% Reading the shard data
+
+a = csvread('data.csv', 1, 1);
+
+d_shard = 1001; %1002
+u_0 = a(1:d_shard,1);
+u_1 = a(1:d_shard,2);
+u_2 = a(1:d_shard,3);
+xdata = a(1:d_shard,4);
+ydata = a(1:d_shard,5);
+zdata = a(1:d_shard,6);
+
+Tzy_Shard = [cos(pi/2) -sin(pi/2) 0; sin(pi/2) cos(pi/2) 0; 0 0 1]*[1 0 0;
+    0 cos(pi) -sin(pi);
+    0 sin(pi) cos(pi)];
+
+Tzy_Shard_inv = inv(Tzy_Shard);
+
+r0_shard = [xdata(1); ydata(2); zdata(3)];
+rfinal_shard = [xdata(length(xdata)); ydata(length(ydata)); zdata(length(zdata))];
+rdiff_shard = r0_shard - rfinal_shard;
+
+m_shard = (abs(max(zdata)) + abs(min(zdata)))/(abs(max(ydata)) + abs(min(ydata))); %Gradient of shard in shard frame
+angle_shard = atan(m_shard); %a - y, o  - z
+V0_shard = 100* 100/(60*60);
+Vz0_shard = V0_shard*cos(angle_shard);
+Vy0_shard = V0_shard*sin(angle_shard);
+V0_shard = [0; Vz0_shard; Vy0_shard];
+
+time = abs(rdiff_shard(2)/V0_shard(2));
+delta_time = time/length(xdata);
+
+%% Aero transformation
+
+TcgCatia = [1 0 0;
+    0 -1 0;
+    0 0 -1];
+
+r_cgCatia = [2; 0; 0];
