@@ -366,5 +366,5 @@ TcgCatia = [1 0 0;
 
 r_cgCatia = [2; 0; 0];
 
-%git huby
+%git hub
 
