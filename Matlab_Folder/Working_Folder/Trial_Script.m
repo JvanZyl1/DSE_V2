@@ -189,9 +189,6 @@ x1 = x; y1 = y; z1 = z;
 x = [abs(x); -abs(x); abs(x); -abs(x)];
 y = [abs(y); abs(y); -abs(y); -abs(y)];
 z = [z; z; z; z];
-%x = [0, 0, 0, 0, 0, 15, -15, 0, 0, 0];
-%y =[0, 90, 45, 135, 180, 0, 0, 90, 90, 90];
-%z = [-1.32, 0.29, -1.15, 1.29, 1.29, -1.33, -1.48, 0.3, 0.32, 0.32 ];
 ti = -180:1:180;
 [XI_Cx, YI_Cx] = meshgrid(ti,ti);
 model_Cx = scatteredInterpolant(x, y, z, 'linear', 'linear');
@@ -215,9 +212,6 @@ x1 = x; y1 = y; z1 = z;
 x = [abs(x); -abs(x); abs(x); -abs(x)];
 y = [abs(y); abs(y); -abs(y); -abs(y)];
 z = [z; z; z; z];
-%x = [0, 0, 0, 0, 0, 15, -15, 0, 0, 0];
-%y =[0, 90, 45, 135, 180, 0, 0, 90, 90, 90];
-%z = [-1.32, 0.29, -1.15, 1.29, 1.29, -1.33, -1.48, 0.3, 0.32, 0.32 ];
 ti = -180:1:180;
 [XI_Cy, YI_Cy] = meshgrid(ti,ti);
 model_Cy = scatteredInterpolant(x, y, z, 'linear', 'linear');
@@ -240,9 +234,6 @@ x1 = x; y1 = y; z1 = z;
 x = [abs(x); -abs(x); abs(x); -abs(x)];
 y = [abs(y); abs(y); -abs(y); -abs(y)];
 z = [z; z; z; z];
-%x = [0, 0, 0, 0, 0, 15, -15, 0, 0, 0];
-%y =[0, 90, 45, 135, 180, 0, 0, 90, 90, 90];
-%z = [-1.32, 0.29, -1.15, 1.29, 1.29, -1.33, -1.48, 0.3, 0.32, 0.32 ];
 ti = -180:1:180;
 [XI_Cz, YI_Cz] = meshgrid(ti,ti);
 model_Cz = scatteredInterpolant(x, y, z, 'linear', 'linear');
@@ -266,9 +257,6 @@ x1 = x; y1 = y; z1 = z;
 x = [abs(x); -abs(x); abs(x); -abs(x)];
 y = [abs(y); abs(y); -abs(y); -abs(y)];
 z = [z; z; z; z];
-%x = [0, 0, 0, 0, 0, 15, -15, 0, 0, 0];
-%y =[0, 90, 45, 135, 180, 0, 0, 90, 90, 90];
-%z = [-1.32, 0.29, -1.15, 1.29, 1.29, -1.33, -1.48, 0.3, 0.32, 0.32 ];
 ti = -180:1:180;
 [XI_p, YI_p] = meshgrid(ti,ti);
 model_p = scatteredInterpolant(x, y, z, 'linear', 'linear');
@@ -292,9 +280,6 @@ x1 = x; y1 = y; z1 = z;
 x = [abs(x); -abs(x); abs(x); -abs(x)];
 y = [abs(y); abs(y); -abs(y); -abs(y)];
 z = [z; z; z; z];
-%x = [0, 0, 0, 0, 0, 15, -15, 0, 0, 0];
-%y =[0, 90, 45, 135, 180, 0, 0, 90, 90, 90];
-%z = [-1.32, 0.29, -1.15, 1.29, 1.29, -1.33, -1.48, 0.3, 0.32, 0.32 ];
 ti = -180:1:180;
 [XI_q, YI_q] = meshgrid(ti,ti);
 model_q = scatteredInterpolant(x, y, z, 'linear', 'linear');
@@ -318,9 +303,6 @@ x1 = x; y1 = y; z1 = z;
 x = [abs(x); -abs(x); abs(x); -abs(x)];
 y = [abs(y); abs(y); -abs(y); -abs(y)];
 z = [z; z; z; z];
-%x = [0, 0, 0, 0, 0, 15, -15, 0, 0, 0];
-%y =[0, 90, 45, 135, 180, 0, 0, 90, 90, 90];
-%z = [-1.32, 0.29, -1.15, 1.29, 1.29, -1.33, -1.48, 0.3, 0.32, 0.32 ];
 ti = -180:1:180;
 [XI_r, YI_r] = meshgrid(ti,ti);
 model_r = scatteredInterpolant(x, y, z, 'linear', 'linear');
@@ -366,12 +348,13 @@ TcgCatia = [1 0 0;
 
 r_cgCatia = [2; 0; 0];
 
-%git huby
-
 %% Shard ramps
-t_finalgust = 179
+t_finalgust = 179;
 u0_final = u_0(length(u_0));
 u1_final = u_1(length(u_1));
 u2_final = u_2(length(u_2));
 
+%% Read catia parameters
 
+% Rotate the parameters
+% Put the propeller parameters in a structure
