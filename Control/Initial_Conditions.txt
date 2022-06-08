@@ -1,0 +1,15 @@
+w_x_0   0.2
+w_y_0   0.1
+w_z_0   0.02
+w_dotx_0    0
+w_doty_0    0
+w_dotz_0    0
+v_x_0   0
+v_y_0   3
+v_z_0   0
+r_x_0  0
+r_y_0  0
+r_z_0  0
+theta_x_0   0
+theta_y_0   0
+theta_z_0   0

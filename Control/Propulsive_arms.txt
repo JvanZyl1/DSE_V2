@@ -1,0 +1,13 @@
+quadcopter  x_1 1
+quadcopter  y_1 1
+quadcopter  z_1 1
+quadcopter  x_2 1
+quadcopter  y_2 1
+quadcopter  z_2 1
+quadcopter  x_3 1
+quadcopter  y_3 1
+quadcopter  z_3 1
+quadcopter  x_cg_cp 0.2
+quadcopter  y_cg_cp 0.3
+quadcopter  z_cg_cp 0.05
+lilium  x_1 2
