@@ -368,3 +368,10 @@ r_cgCatia = [2; 0; 0];
 
 %git huby
 
+%% Shard ramps
+t_finalgust = 179
+u0_final = u_0(length(u_0));
+u1_final = u_1(length(u_1));
+u2_final = u_2(length(u_2));
+
+
