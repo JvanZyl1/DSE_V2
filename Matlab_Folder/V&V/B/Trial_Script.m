@@ -365,3 +365,5 @@ TcgCatia = [1 0 0;
     0 0 -1];
 
 r_cgCatia = [2; 0; 0];
+
+%point mass
