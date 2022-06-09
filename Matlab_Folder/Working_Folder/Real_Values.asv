@@ -112,7 +112,7 @@ prop_arms = [t1;t2;t3;t4;b1;b2;b3;b4;c1;c2;c3];
 props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3', b3, 'b4', b4, 'c1', c1, 'c2', c2, 'c3', c3);
 
 %% Maximum force
-Fclim = 3000;
+Fclim = 30000;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
@@ -208,7 +208,8 @@ K_gain = 300; %10000
 a_MF = 0.6; %2.5
 c_MF = 1.5; %1.75
 
-load('MPCDesignerSession.mat');
+%load('MPCDesignerSession.mat');
+load('MPC_try2.mat');
 
 %% Generate C_X lookup table
 
@@ -371,15 +372,25 @@ rdiff_shard = r0_shard - rfinal_shard;
 m_shard = (abs(max(zdata)) + abs(min(zdata)))/(abs(max(ydata)) + abs(min(ydata))); %Gradient of shard in shard frame
 angle_shard = atan(m_shard); %a - y, o  - z
 V0_shard = 100* 100/(60*60);
-Vz0_shard = V0_shard*cos(angle_shard);
-Vy0_shard = V0_shard*sin(angle_shard);
-V0_shard = [0; Vz0_shard; Vy0_shard];
+%Vz0_shard = V0_shard*cos(angle_shard);
+%Vy0_shard = V0_shard*sin(angle_shard);
+%V0_shard = [0; Vz0_shard; Vy0_shard];
 
 time = abs(rdiff_shard(2)/V0_shard(2));
 delta_time = time/length(xdata);
+
+rdiff_abs = sqrt(rdiff_shard(1)^2 + rdiff_shard(2)^2 + rdiff_shard(3));
+time = 
 
 %% Shard ramps
 t_finalgust = 179;
 u0_final = u_0(length(u_0));
 u1_final = u_1(length(u_1));
 u2_final = u_2(length(u_2));
+
+%% PID tune linear results
+
+Fx_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
+Fy_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
+Fz_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
+
