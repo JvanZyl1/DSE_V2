@@ -92,18 +92,32 @@ c_2 = [-1040.1998; 0; -493.434];    %Control Back Bottom
 c_3 = [2259.8002; 0; -293.434];     %Control Front
 
 %Propeller arms - rotated
-t_1 = TcgCatia*t_1
-t1 = transpose(t_1)
+t_1 = TcgCatia*t_1;
+t1 = transpose(t_1);
 t_2 = TcgCatia*t_2;
+t2 = transpose(t_2);
 t_3 = TcgCatia*t_3;
+t3 = transpose(t_3);
 t_4 = TcgCatia*t_4;
+t4 = transpose(t_4);
 b_1 = TcgCatia*b_1;
+b1 = transpose(b_1);
 b_2 = TcgCatia*b_2;
+b2 = transpose(b_2);
 b_3 = TcgCatia*b_3;
+b3 = transpose(b_3);
 b_4 = TcgCatia*b_4;
+b4 = transpose(b_4);
 c_1 = TcgCatia*c_1;
+c1 = transpose(c_1);
 c_2 = TcgCatia*c_2;
+c2 = transpose(c_2);
 c_3 = TcgCatia*c_3;
+c3 = transpose(c_3);
+
+prop_arms = [t1;t2;t3;t4;b1;b2;b3;b4;c1;c2;c3];
+
+props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3', b3, 'b4', b4, 'c1', c1, 'c2', c2, 'c3', c3);
 
 %% Maximum force
 Fclim = 3000;
