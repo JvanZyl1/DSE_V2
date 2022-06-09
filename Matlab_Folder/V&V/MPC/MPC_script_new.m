@@ -2,17 +2,28 @@ clear all
 close all
 clc
 
-I_xx = 1;
-I_xy = 2;
-I_xz = 1;
-I_yx = 2;
-I_yy = 1;
-I_yz = 2;
-I_zx = 3;
-I_zy = 4;
-I_zz = 2;
+TcgCatia = [1 0 0;
+    0 -1 0;
+    0 0 -1];
 
-I_mat = [I_xx I_xy I_xz;
+I_xx	= 411.61; %kgm^2
+I_xy	= 1.15676;
+I_xz	= 33.1961;
+I_yx	= 0;
+I_yy	= 1090.74;
+I_yz	= -0.287697;
+I_zx	= 0;
+I_zy	= 0;
+I_zz	= 1251.05;
+
+Inertia = [I_xx I_xy I_xz;
     I_yx I_yy I_yz;
     I_zx I_zy I_zz];
+I_mat = TcgCatia*Inertia;
+
+A_2 = zeros(3);
+B_2 = I_inv;
+C_2 = eye(3);
+D_2 = zeros(3);
+
 
