@@ -33,14 +33,6 @@ TcgCatia = [1 0 0;
 r_cgCatia = [40.1998; -1.80957; 293.434];
 r_cgCatia = TcgCatia*r_cgCatia;
 
-
-% Rotate the parameters
-% Put the propeller parameters in a structure
-
-%I_xx = 3866.543;
-%I_yy = 16529.205;
-%I_zz = 17264.21;
-
 I_xx	= 411.61; %kgm^2
 I_xy	= 1.15676;
 I_xz	= 33.1961;
@@ -93,10 +85,32 @@ c_3 = [2259.8002; 0; -293.434];     %Control Front
 
 %Propeller arms - rotated
 t_1 = TcgCatia*t_1;
+t1 = transpose(t_1);
 t_2 = TcgCatia*t_2;
+t2 = transpose(t_2);
 t_3 = TcgCatia*t_3;
+t3 = transpose(t_3);
 t_4 = TcgCatia*t_4;
-b
+t4 = transpose(t_4);
+b_1 = TcgCatia*b_1;
+b1 = transpose(b_1);
+b_2 = TcgCatia*b_2;
+b2 = transpose(b_2);
+b_3 = TcgCatia*b_3;
+b3 = transpose(b_3);
+b_4 = TcgCatia*b_4;
+b4 = transpose(b_4);
+c_1 = TcgCatia*c_1;
+c1 = transpose(c_1);
+c_2 = TcgCatia*c_2;
+c2 = transpose(c_2);
+c_3 = TcgCatia*c_3;
+c3 = transpose(c_3);
+
+prop_arms = [t1;t2;t3;t4;b1;b2;b3;b4;c1;c2;c3];
+
+props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3', b3, 'b4', b4, 'c1', c1, 'c2', c2, 'c3', c3);
+
 %% Maximum force
 Fclim = 3000;
 
@@ -195,45 +209,6 @@ a_MF = 0.6; %2.5
 c_MF = 1.5; %1.75
 
 load('MPCDesignerSession.mat');
-%{
-a_list = [];
-K_list = [];
-c_list = [];
-angerror_list =[];
-Mc_list =[];
-radx_list = [];
-rady_list = [];
-radz_list = [];
-xe_list =[];
-ye_list = [];
-ze_list = [];
-for i = 0:1 %c_MF
-    i = i/10;
-    c_MF = i;
-    for j = 5:5:40 %a_MF
-        j = j/10;
-        a_MF = j;
-        for k = 3 %K_gain
-            i
-            k = k*100;
-            K_gain = k;
-            sim('simgoid_terry.slx', 60);
-            c_list = [c_list; i];
-            a_list = [a_list; j];
-            K_list = [K_list; k];
-            Mc_list = [Mc_list; ans.Mc];
-            angerror_list = [angerror_list; ans.angle_error];
-            radx_list = [radx_list, ans.radx];
-            rady_list = [rady_list, ans.rady];
-            radz_list = [radz_list, ans.radz];
-            length(ans.errorx);
-            %xe_list = [xe_list, ans.errorx];
-            %ye_list = [ye_list, ans.errory];
-            %ze_list = [ze_list, ans.errorz];
-        end
-    end
-end
-%}
 
 %% Generate C_X lookup table
 
@@ -408,9 +383,3 @@ t_finalgust = 179;
 u0_final = u_0(length(u_0));
 u1_final = u_1(length(u_1));
 u2_final = u_2(length(u_2));
-
-
-
-
-
-

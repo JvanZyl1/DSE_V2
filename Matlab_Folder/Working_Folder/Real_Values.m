@@ -33,14 +33,6 @@ TcgCatia = [1 0 0;
 r_cgCatia = [40.1998; -1.80957; 293.434];
 r_cgCatia = TcgCatia*r_cgCatia;
 
-
-% Rotate the parameters
-% Put the propeller parameters in a structure
-
-%I_xx = 3866.543;
-%I_yy = 16529.205;
-%I_zz = 17264.21;
-
 I_xx	= 411.61; %kgm^2
 I_xy	= 1.15676;
 I_xz	= 33.1961;
@@ -217,45 +209,6 @@ a_MF = 0.6; %2.5
 c_MF = 1.5; %1.75
 
 load('MPCDesignerSession.mat');
-%{
-a_list = [];
-K_list = [];
-c_list = [];
-angerror_list =[];
-Mc_list =[];
-radx_list = [];
-rady_list = [];
-radz_list = [];
-xe_list =[];
-ye_list = [];
-ze_list = [];
-for i = 0:1 %c_MF
-    i = i/10;
-    c_MF = i;
-    for j = 5:5:40 %a_MF
-        j = j/10;
-        a_MF = j;
-        for k = 3 %K_gain
-            i
-            k = k*100;
-            K_gain = k;
-            sim('simgoid_terry.slx', 60);
-            c_list = [c_list; i];
-            a_list = [a_list; j];
-            K_list = [K_list; k];
-            Mc_list = [Mc_list; ans.Mc];
-            angerror_list = [angerror_list; ans.angle_error];
-            radx_list = [radx_list, ans.radx];
-            rady_list = [rady_list, ans.rady];
-            radz_list = [radz_list, ans.radz];
-            length(ans.errorx);
-            %xe_list = [xe_list, ans.errorx];
-            %ye_list = [ye_list, ans.errory];
-            %ze_list = [ze_list, ans.errorz];
-        end
-    end
-end
-%}
 
 %% Generate C_X lookup table
 
@@ -431,8 +384,9 @@ u0_final = u_0(length(u_0));
 u1_final = u_1(length(u_1));
 u2_final = u_2(length(u_2));
 
+%% PID tune linear results
 
-
-
-
+Fx_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
+Fy_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
+Fz_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
 
