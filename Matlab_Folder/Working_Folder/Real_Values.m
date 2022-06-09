@@ -30,7 +30,7 @@ TcgCatia = [1 0 0;
     0 -1 0;
     0 0 -1];
 
-r_cgCatia = [40.1998; -1.80957; 293.434];
+r_cgCatia = [40.1998; -1.80957; 293.434]*10^(-3);
 r_cgCatia = TcgCatia*r_cgCatia;
 
 I_xx	= 411.61; %kgm^2
@@ -54,34 +54,34 @@ I_inv = Inertia_inv;
 m = 941.102; %kg
 
 %Propeller arms - un-changed
-t_1 = [1259.8002, 1301.80957, 839.472];     %Top Front Left
-t_2 = [1259.8002, -1298.19043,	839.472];   %Top Front Right
-t_3 = [-1340.1998, 1301.80957, 839.472];    %Top Back Left
-t_4 = [-1340.1998, -1298.19043, 839.472];   %Top Back Right
+t_1 = [1259.8002, 1301.80957, 839.472]*10^(-3);     %Top Front Left
+t_2 = [1259.8002, -1298.19043,	839.472]*10^(-3);   %Top Front Right
+t_3 = [-1340.1998, 1301.80957, 839.472]*10^(-3);    %Top Back Left
+t_4 = [-1340.1998, -1298.19043, 839.472]*10^(-3);   %Top Back Right
 
-b_1 = [2259.8002, 1301.80957, -561.25];     %Bottom Front Left
-b_2 = [2259.8002, -1298.19043, -561.25];    %Bottom Front Right
-b_3 = [-1340.1998, 1301.80957, -561.25];    %Bottom Back Left
-b_4 = [-1340.1998, -1298.19043, -561.25];   %Bottom Back Right
+b_1 = [2259.8002, 1301.80957, -561.25]*10^(-3);     %Bottom Front Left
+b_2 = [2259.8002, -1298.19043, -561.25]*10^(-3);    %Bottom Front Right
+b_3 = [-1340.1998, 1301.80957, -561.25]*10^(-3);    %Bottom Back Left
+b_4 = [-1340.1998, -1298.19043, -561.25]*10^(-3);   %Bottom Back Right
 
-c_1 = [-640.1998, 1.80957, 506.566];        %Control Back Top
-c_2 = [-1040.1998, 1.80957, -493.434];      %Control Back Bottom
-c_3 = [2259.8002, 1.80957, -293.434];       %Control Front
+c_1 = [-640.1998, 1.80957, 506.566]*10^(-3);        %Control Back Top
+c_2 = [-1040.1998, 1.80957, -493.434]*10^(-3);      %Control Back Bottom
+c_3 = [2259.8002, 1.80957, -293.434]*10^(-3);       %Control Front
 
 %Propeller arms - changed due to CATIA errors
-t_1 = [1259.8002; 1300; 839.472];   %Top Front Left
-t_2 = [1259.8002; -1300; 839.472];  %Top Front Right
-t_3 = [-1340.1998; 1300; 839.472];  %Top Back Left
-t_4 = [-1340.1998; -1300; 839.472]; %Top Back Right
+t_1 = [1259.8002; 1300; 839.472]*10^(-3);   %Top Front Left
+t_2 = [1259.8002; -1300; 839.472]*10^(-3);  %Top Front Right
+t_3 = [-1340.1998; 1300; 839.472]*10^(-3);  %Top Back Left
+t_4 = [-1340.1998; -1300; 839.472]*10^(-3); %Top Back Right
 
-b_1 = [2259.8002; 1300; -561.25];   %Bottom Front Left
-b_2 = [2259.8002; -1300; -561.25];  %Bottom Front Right
-b_3 = [-1340.1998; 1300; -561.25];  %Bottom Back Left
-b_4 = [-1340.1998; -1300; -561.25]; %Bottom Back Right
+b_1 = [2259.8002; 1300; -561.25]*10^(-3);   %Bottom Front Left
+b_2 = [2259.8002; -1300; -561.25]*10^(-3);  %Bottom Front Right
+b_3 = [-1340.1998; 1300; -561.25]*10^(-3);  %Bottom Back Left
+b_4 = [-1340.1998; -1300; -561.25]*10^(-3); %Bottom Back Right
 
-c_1 = [-640.1998; 0; 506.566];      %Control Back Top
-c_2 = [-1040.1998; 0; -493.434];    %Control Back Bottom
-c_3 = [2259.8002; 0; -293.434];     %Control Front
+c_1 = [-640.1998; 0; 506.566]*10^(-3);      %Control Back Top
+c_2 = [-1040.1998; 0; -493.434]*10^(-3);    %Control Back Bottom
+c_3 = [2259.8002; 0; -293.434]*10^(-3);     %Control Front
 
 %Propeller arms - rotated
 t_1 = TcgCatia*t_1;
