@@ -26,3 +26,6 @@ A_2 = zeros(3);
 B_2 = I_inv;
 C_2 = eye(3);
 D_2 = zeros(3);
+
+
+% USE MPC_try2.mat!!!!!!
