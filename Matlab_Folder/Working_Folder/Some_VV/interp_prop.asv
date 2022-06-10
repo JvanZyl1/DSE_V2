@@ -1,5 +1,5 @@
-x_t1 = 1.2598;
-x_b1 = 2.2598;
+x_t1 = 1%1.2598;
+x_b1 = %2.2598;
 x_t3 = -1.3402;
 
 M_y = 2000;
@@ -12,7 +12,7 @@ d_coeff = M_y - F_z;
 
 p_0 = 0;
 p_minus1 = 0;
-step = 5600;
+step = 1000;
 Converged = 0;
 p_list = [];
 x_list = [];
@@ -44,7 +44,7 @@ while Converged == 0
     elseif p_minus1 > p_0 && p_0 > p(ind)
         step = step;
     else
-        step = step*0.9;
+        step = step/2;
     end
         
     p_minus1 = p_0;
@@ -93,7 +93,7 @@ plot(1:length(p_list),J_list)
 title('Total absolute force', 'interpreter', 'latex', 'fontsize', 16)
 xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
 ylabel('J value', 'interpreter', 'latex', 'fontsize', 16)
-yline(900, '--r')
-yline(-900, '--r')
+yline(300, '--r')
+yline(-300, '--r')
 ax = gca; 
 ax.FontSize = 16; 
