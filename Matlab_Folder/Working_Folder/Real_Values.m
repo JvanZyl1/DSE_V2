@@ -16,7 +16,7 @@ T = 10.5;
 C_D = 0.6;
 time_delay = 0.1;
 S = 1*1.8;
-f_prop = 100;
+fprop = 1000;
 
 %% Linear Dynamics Inputs
 %F_aero = [1;2;3];
@@ -112,7 +112,7 @@ prop_arms = [t1;t2;t3;t4;b1;b2;b3;b4;c1;c2;c3];
 props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3', b3, 'b4', b4, 'c1', c1, 'c2', c2, 'c3', c3);
 
 %% Maximum force
-Fclim = 100;
+Fclim = 3000;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
@@ -121,14 +121,10 @@ Fc2_l = -Fclim;
 Fc3_u = Fclim;
 Fc3_l = -Fclim;
 
-%Ftlim = 3000;
-%Fulim_TF = 5600;
-%Fulim_BF = 2600;
-%Fulim_Back = 3200;
-Ftlim = 300;
-Fulim_TF = 560;
-Fulim_BF = 260;
-Fulim_Back = 320;
+Ftlim = 30000;
+Fulim_TF = 56000;
+Fulim_BF = 26000;
+Fulim_Back = 32000;
 
 Ft1_u = Fulim_TF;
 Ft1_l = -Fulim_TF;
