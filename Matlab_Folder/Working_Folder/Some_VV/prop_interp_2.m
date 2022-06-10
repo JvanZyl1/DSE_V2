@@ -10,7 +10,7 @@ x_b1 = xb_1;
 x_t3 = xt_3;
 
 M_y = -100;
-F_z = 0;
+F_z = 100;
 
 A_mat = [1 1;
     xt_1 xb_1];
@@ -108,6 +108,9 @@ diff = sum(abs(forceback - [F_z; M_y]));
 if diff > 10^(-1)
     disp('Error')
 end
+%p_0 is one prop
+%force(1) is two props
+%force(2) is two props
 
 ax1 = subplot(1,4,1);
 plot(1:length(p_list),p_list)
