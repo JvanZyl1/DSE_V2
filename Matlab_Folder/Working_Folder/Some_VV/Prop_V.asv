@@ -273,19 +273,19 @@ elseif i ==7
             Converged = 1;
         end
     end
-    F_t1  = y_list(length(y_list))
-    F_t2 = F_t1
-    F_t3 = p_0
-    F_t4 = F_t3
-    F_b3 = F_t3
-    F_b4 = F_t3
-    F_b1 = x_list(length(x_list))
-    F_b2 = F_b1
+    F_t1  = y_list(length(y_list));
+    F_t2 = F_t1;
+    F_t3 = p_0;
+    F_t4 = F_t3;
+    F_b3 = F_t3;
+    F_b4 = F_t3;
+    F_b1 = x_list(length(x_list));
+    F_b2 = F_b1;
     
     Tb_vec = [2*F_t1; 2*F_b1; 4*F_t3];
     A_tb = [1 1 1;
         x_t1 x_b1 x_t3];
-    Force_vec = A_tb*Tb_vec
+    Force_vec = A_tb*Tb_vec;
     Force_given = [F_z; M_y];
     Tb_work = Force_vec - Force_given
 end
