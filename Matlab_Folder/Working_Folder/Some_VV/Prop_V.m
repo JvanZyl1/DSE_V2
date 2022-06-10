@@ -3,7 +3,7 @@ close all
 clc
 
 %% Maximum force
-Fclim = 3000;
+Fclim = 30000;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
@@ -100,7 +100,7 @@ props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3',
 %% ..
 
 
-i = 7;
+i = 6;
 if i == 1
     %Unit Test 1 : no Tdv
     clear Tdv
@@ -151,141 +151,4 @@ elseif i == 6
     yline(Mc(2), '--r');
     yline(Mc(3), '--r');
     hold off
-elseif i ==7
-    Fc = rand(3,1);
-    Mc = rand(3,1);
-    F_x  = Fc(1);
-    F_y = Fc(2);
-    F_z = Fc(3);
-    M_x = Mc(1);
-    M_y = Mc(2);
-    M_z = Mc(3);
-    
-    xc_1 = abs(props.c1(1));
-    yc_1 = abs(props.c1(2));
-    zc_1 = abs(props.c1(3));
-
-    xc_2 = abs(props.c2(1));
-    yc_2 = abs(props.c2(2));
-    zc_2 = abs(props.c2(3));
-
-    xc_3 = abs(props.c3(1));
-    yc_3 = abs(props.c3(2));
-    zc_3 = abs(props.c3(3));
-
-    xt_1 = abs(props.t1(1));
-    yt_1 = abs(props.t1(2));
-    zt_1 = abs(props.t1(3));
-
-    xt_2 = abs(props.t2(1));
-    yt_2 = abs(props.t2(2));
-    zt_2 = abs(props.t2(3));
-
-    xt_3 = abs(props.t3(1));
-    yt_3 = abs(props.t3(2));
-    zt_3 = abs(props.t3(3));
-
-    xt_4 = props.t4(1);
-    yt_4 = props.t4(2);
-    zt_4 = props.t4(3);
-
-    xb_1 = props.b1(1);
-    yb_1 = props.b1(2);
-    zb_1 = props.b1(3);
-
-    xb_2 = props.b2(1);
-    yb_2 = props.b2(2);
-    zb_2 = props.b2(3);
-
-    xb_3 = props.b3(1);
-    yb_3 = props.b3(2);
-    zb_3 = props.b3(3);
-
-    xb_4 = props.b4(1);
-    yb_4 = props.b4(2);
-    zb_4 = props.b4(3);
-    
-    %% Control
-    
-    A_control = [1 1 1;
-        zc_1 zc_2 zc_3;
-        xc_1 xc_2 xc_3];
-    Control_vec = [F_y; M_x; M_z];
-    A_control_inverse = inv(A_control);
-    Control_forces = A_control_inverse*Control_vec;
-    
-    Control_vec_2 = A_control*Control_forces;
-    Control_works = Control_vec - Control_vec_2
-    
-    %% Top and Bottom
-    x_t1 = xt_1;
-    x_b1 = xb_1;
-    x_t3 = xt_3;
-    a_coeff = 2 - 2*x_t1;
-    b_coeff = 2 -2*x_b1;
-    c_coeff = 4 - 4*x_t3;
-    d_coeff = M_y - F_z;
-
-    p_0 = 0;
-    p_minus1 = 0;
-    step = 5600;
-    Converged = 0;
-    p_list = [];
-    x_list = [];
-    y_list = [];
-    J_list = [];
-    while Converged == 0
-        y1 = (1/((x_b1/x_t1) -1))*(M_y/(2*x_t1) - (x_t3/x_t1)*p_0 + 2*p_0 - 1/2*F_z);
-        x1 = 1/2*(F_z - 2*y1 - 4*p_0);
-        J_1 = sqrt(x1^2 + y1^2 + p_0^2);
-
-        p_1 = p_0 + step;
-        y2 = (1/((x_b1/x_t1) -1))*(M_y/(2*x_t1) - (x_t3/x_t1)*p_1 + 2*p_1 - 1/2*F_z);
-        x2 = 1/2*(F_z - 2*y2 - 4*p_1);
-        J_2 = sqrt(x2^2 + y2^2 + p_1^2);
-
-        p_2 = p_0 - step;
-        y3 = (1/((x_b1/x_t1) -1))*(M_y/(2*x_t1) - (x_t3/x_t1)*p_2 + 2*p_2 - 1/2*F_z);
-        x3 = 1/2*(F_z - 2*y3 - 4*p_2);
-        J_3 = sqrt(x3^2 + y3^2 + p_2^2);
-
-        p = [p_0, p_1, p_2];
-        x = [x1, x2, x2];
-        y = [y1, y2, y3];
-        J = [J_1, J_2, J_3];
-        min_J = min(J);
-        ind = find(J == min_J);
-        if p_minus1 < p_0 && p_0 < p(ind)
-            step = step;
-        elseif p_minus1 > p_0 && p_0 > p(ind)
-            step = step;
-        else
-            step = step*0.9;
-        end
-
-        p_minus1 = p_0;
-        p_0 = p(ind);
-        p_list = [p_list; p_0];
-        x_list = [x_list; x(ind)];
-        y_list = [y_list; y(ind)];
-        J_list = [J_list; J(ind)];
-        if step < 0.01
-            Converged = 1;
-        end
-    end
-    F_t1  = y_list(length(y_list))
-    F_t2 = F_t1
-    F_t3 = p_0
-    F_t4 = F_t3
-    F_b3 = F_t3
-    F_b4 = F_t3
-    F_b1 = x_list(length(x_list))
-    F_b2 = F_b1
-    
-    Tb_vec = [2*F_t1; 2*F_b1; 4*F_t3];
-    A_tb = [1 1 1;
-        x_t1 x_b1 x_t3];
-    Force_vec = A_tb*Tb_vec
-    Force_given = [F_z; M_y];
-    Tb_work = Force_vec - Force_given
 end
