@@ -9,17 +9,17 @@ x_t1 = xt_1;
 x_b1 = xb_1;
 x_t3 = xt_3;
 
-M_y = 2000;
-F_z = -1000;
+M_y = -100;
+F_z = 0;
 
-a_coeff = 2 - 2*x_t1;
-b_coeff = 2 -2*x_b1;
-c_coeff = 4 - 4*x_t3;
-d_coeff = M_y - F_z;
+A_mat = [1 1;
+    xt_1 xb_1];
 
-p_0 = 0;
+A_inv = inv(A_mat);
+
+p_0 = 0.2;
 p_minus1 = 0;
-step = 10;
+step = 1000;
 Converged = 0;
 p_list = [];
 x_list = [];
@@ -28,87 +28,86 @@ J_list = [];
 Fzz =[];
 Myy =[];
 while Converged == 0
-    A_mat = [1 1;
-    xt_1 xb_1];
-    A_inv = inv(A_mat);
     B = [(F_z - 4*p_0); (M_y - 4*p_0*xt_3)];
-    force = (A_inv*B); %Gives it as a total
-    kkk =sum(force);
-    x1 = force(1); %4*F_t1
-    y1 = force(2); %4*F_b1
-    %p_0 = 4*F_t3
-    J_1 = sqrt(x1^2 + y1^2 + p_0^2);
+    force_0 = (A_inv*B);
+    J_0 = sqrt(force_0(1)^2 + force_0(2)^2 + p_0^2);
+    back = A_mat*force_0;
+    backtrack = [4*p_0; 4*p_0*xt_3];
+    forceback = back+backtrack;
+    diff = sum(abs(forceback - [F_z; M_y]));
+    if diff > 10^(-7)
+        disp('Error')
+        break
+    end
+    force = force_0;
+    J = J_0;
+    p = p_0;
     
     p_1 = p_0 + step;
     B = [(F_z - 4*p_1); (M_y - 4*p_1*xt_3)];
-    force = (A_inv*B);
-    kkk =sum(force);
-    x2 = force(1);
-    y2 = force(2);
-    J_2 = sqrt(x2^2 + y2^2 + p_1^2);
+    force_1 = (A_inv*B);
+    J_1 = sqrt(force_1(1)^2 + force_1(2)^2 + p_1^2);
+    back = A_mat*force_1;
+    backtrack = [4*p_1; 4*p_1*xt_3];
+    forceback = back+backtrack;
+    diff = sum(abs(forceback - [F_z; M_y]));
+    if diff > 10^(-7)
+        disp('Error')
+        break
+    end
+    if J_1 < J_0
+        force = force_1;
+        J = J_1;
+        p = p_1;
+    end
     
     p_2 = p_0 - step;
     B = [(F_z - 4*p_2); (M_y - 4*p_2*xt_3)];
-    force = (A_inv*B);
-    kkk =sum(force);
-    x3 = force(1);
-    y3 = force(2);
-    J_3 = sqrt(x3^2 + y3^2 + p_2^2);
+    force_2 = (A_inv*B);
+    J_2 = sqrt(force_2(1)^2 + force_2(2)^2 + p_2^2);
+    back = A_mat*force_2;
+    backtrack = [4*p_2; 4*p_2*xt_3];
+    forceback = back+backtrack;
+    diff = sum(abs(forceback - [F_z; M_y]));
+    if diff > 10^(-7)
+        disp('Error')
+        break
+    end
+    if J_2 < J_0 && J_2 < J_1
+        force = force_2;
+        J = J_2;
+        p = p_2;
+    end
     
-    p = [p_0, p_1, p_2];
-    x = [x1, x2, x2];
-    y = [y1, y2, y3];
-    J = [J_1, J_2, J_3];
-    min_J = min(J);
-    ind = find(J == min_J);
-    if p_minus1 < p_0 && p_0 < p(ind)
+    if p_minus1 < p_0 && p_0 < p
         step = step;
-    elseif p_minus1 > p_0 && p_0 > p(ind)
+    elseif p_minus1 > p_0 && p_0 > p
         step = step;
     else
         step = step*0.9;
     end
         
     p_minus1 = p_0;
-    p_0 = p(ind);
+    p_0 = p;
     p_list = [p_list; p_0];
-    x_list = [x_list; x(ind)];
-    y_list = [y_list; y(ind)];
-    J_list = [J_list; J(ind)];
-    if step < 100
+    x_list = [x_list; force(1)];
+    y_list = [y_list; force(2)];
+    J_list = [J_list; J];
+    if step < abs(min([F_z,M_y])*10^(-9))
         Converged = 1;
     end
+    
+    
 end
 
-F_t1 = x_list(length(x_list))/2;
-F_t2 = F_t1;
-F_t3 = p_list(length(p_list))/4;
-F_t4 = F_t3;
-F_b3 = F_t3;
-F_b4 = F_t3;
-F_b1 = y_list(length(y_list))/2;
-F_b2 = F_b1;
-    
 
-Fzz = F_t1 + F_t2 + F_t3 + F_t4 + F_b1 + F_b2 + F_b3 + F_b4
-%{
-ax1 = subplot(1,2,1);
-plot(1:length(Fzz),Fzz)
-title('Fz verificiation', 'interpreter', 'latex', 'fontsize', 16)
-xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
-ylabel('$F_{z}$ value', 'interpreter', 'latex', 'fontsize', 16)
-ax = gca; 
-ax.FontSize = 16; 
-
-ax1 = subplot(1,2,2);
-plot(1:length(Myy),Myy)
-title('My verification', 'interpreter', 'latex', 'fontsize', 16)
-xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
-ylabel('M_{y}$ value', 'interpreter', 'latex', 'fontsize', 16)
-ax = gca; 
-ax.FontSize = 16; 
-%}
-
+back = A_mat*force;
+backtrack = [4*p_0; 4*p_0*xt_3];
+forceback = back+backtrack;
+diff = sum(abs(forceback - [F_z; M_y]));
+if diff > 10^(-1)
+    disp('Error')
+end
 
 ax1 = subplot(1,4,1);
 plot(1:length(p_list),p_list)
@@ -149,4 +148,3 @@ yline(900, '--r')
 yline(-900, '--r')
 ax = gca; 
 ax.FontSize = 16; 
-
