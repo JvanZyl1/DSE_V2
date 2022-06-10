@@ -2,7 +2,7 @@ x_t1 = 1.2598;
 x_b1 = 2.2598;
 x_t3 = -1.3402;
 
-M_y = 20;
+M_y = 2000;
 F_z = -1000;
 
 a_coeff = 2 - 2*x_t1;
@@ -10,11 +10,6 @@ b_coeff = 2 -2*x_b1;
 c_coeff = 4 - 4*x_t3;
 d_coeff = M_y - F_z;
 
-[X,Y] = meshgrid(-100:100);
-
-%V = 1/c_coeff*(a_coeff*X + b_coeff*Y + c_coeff);
-
-%total = X + Y + V;
 p_0 = 0;
 p_minus1 = 0;
 step = 1000;
@@ -65,28 +60,40 @@ end
 
 ax1 = subplot(1,4,1);
 plot(1:length(p_list),p_list)
-title('Converging firing minimization')
-xlabel('Iteration Number')
+title('$F_{t_1}$ and $F_{t_2}$', 'interpreter', 'latex', 'fontsize', 16)
+xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
 ylabel('$F_{t3}$ value', 'interpreter', 'latex', 'fontsize', 16)
+yline(300, '--r')
+yline(-300, '--r')
+ax = gca; 
+ax.FontSize = 16; 
 
 ax1 = subplot(1,4,2);
 plot(1:length(p_list),x_list)
-title('Converging firing minimization')
-xlabel('Iteration Number')
+title('$F_{t_3}$, $F_{t_4}$, $F_{b_3}$ and $F_{b_4}$', 'interpreter', 'latex', 'fontsize', 16)
+xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
 ylabel('$F_{t1}$ value', 'interpreter', 'latex', 'fontsize', 16)
+yline(300, '--r')
+yline(-300, '--r')
+ax = gca; 
+ax.FontSize = 16; 
 
 ax1 = subplot(1,4,3);
 plot(1:length(p_list),y_list)
-title('Converging firing minimization')
-xlabel('Iteration Number')
+title('$F_{b_1}$ and $F_{b_2}$', 'interpreter', 'latex', 'fontsize', 16)
+xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
 ylabel('$F_{b1}$ value', 'interpreter', 'latex', 'fontsize', 16)
+yline(300, '--r')
+yline(-300, '--r')
+ax = gca; 
+ax.FontSize = 16; 
 
 ax1 = subplot(1,4,4);
-plot(1:length(p_list),y_list)
-title('Converging firing minimization')
-xlabel('Iteration Number')
+plot(1:length(p_list),J_list)
+title('Total absolute force', 'interpreter', 'latex', 'fontsize', 16)
+xlabel('Iteration Number', 'interpreter', 'latex', 'fontsize', 16)
 ylabel('J value', 'interpreter', 'latex', 'fontsize', 16)
-
-
-%surf(X,Y,V)
-%plot3(X,Y,V)
+yline(300, '--r')
+yline(-300, '--r')
+ax = gca; 
+ax.FontSize = 16; 
