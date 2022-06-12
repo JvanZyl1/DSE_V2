@@ -1,0 +1,17 @@
+subplot(3,1,1)
+plot(out.GPS_error)
+xlabel('Time [sec]')
+ylabel('GPS error [m]')
+title('GPS error')
+
+subplot(3,1,2)
+plot(out.Kal_GPS)
+xlabel('Time [sec]')
+ylabel('GPS-kalman difference [m]')
+title('GPS Kalman difference')
+
+subplot(3,1,3)
+plot(out.Kal_tot)
+xlabel('Time [sec]')
+ylabel('Kalman difference [m]')
+title('Total Kalman error')

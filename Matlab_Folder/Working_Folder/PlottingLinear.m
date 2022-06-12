@@ -1,0 +1,17 @@
+subplot(3,1,1)
+plot(out.r)
+xlabel('Time [sec]')
+ylabel('Position [m]')
+title('Position')
+
+subplot(3,1,2)
+plot(out.v)
+xlabel('Time [sec]')
+ylabel('Velocity [m/s]')
+title('Velocity')
+
+subplot(3,1,3)
+plot(out.a)
+xlabel('Time [sec]')
+ylabel('Acceleration [m/s^2]')
+title('Acceleration')

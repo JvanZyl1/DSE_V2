@@ -1,0 +1,17 @@
+subplot(3,1,1)
+plot(out.u0)
+title('x-direction: back-to-front')
+xlabel('Time [sec]')
+ylabel('Gust Speed [m/s]')
+
+subplot(3,1,2)
+plot(out.u1)
+title('y-direction: left-to-right')
+xlabel('Time [sec]')
+ylabel('Gust Speed [m/s]')
+
+subplot(3,1,3)
+plot(out.u2)
+title('z-direction: top-to-bottom')
+xlabel('Time [sec]')
+ylabel('Gust Speed [m/s]')
