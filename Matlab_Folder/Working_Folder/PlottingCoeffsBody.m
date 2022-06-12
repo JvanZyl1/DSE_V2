@@ -1,0 +1,37 @@
+subplot(2,3,1)
+plot(out.Cx_b)
+title('C_X')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(2,3,2)
+plot(out.Cy_b)
+title('C_Y')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(2,3,3)
+plot(out.Cz_b)
+title('C_Z')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(2,3,4)
+plot(out.Cmp_b)
+title('C_m,p')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(2,3,5)
+plot(out.Cmq_b)
+title('C_m,q')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(2,3,6)
+plot(out.Cmr_b)
+title('C_m,r')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+sgtitle('Coefficients transformed to body frame')
