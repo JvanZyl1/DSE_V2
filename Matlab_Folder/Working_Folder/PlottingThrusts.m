@@ -1,0 +1,17 @@
+subplot(3,1,1)
+plot(out.Fc)
+title('Control Propeller Thrust')
+xlabel('Time [sec]')
+ylabel('Thrust [N]')
+
+subplot(3,1,2)
+plot(out.Ft)
+title('Top Propeller Thrust')
+xlabel('Time [sec]')
+ylabel('Thrust [N]')
+
+subplot(3,1,3)
+plot(out.Fb)
+title('Bottom Propeller Thrust')
+xlabel('Time [sec]')
+ylabel('Thrust [N]')

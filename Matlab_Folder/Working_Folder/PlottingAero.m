@@ -1,0 +1,11 @@
+subplot(2,1,1)
+plot(out.Faero)
+title('Aerodynamic Force')
+xlabel('Time [sec]')
+ylabel('Force [N]')
+
+subplot(2,1,2)
+plot(out.Maero)
+title('Aerodynamic Moment')
+xlabel('Time [sec]')
+ylabel('Moment [Nm]')
