@@ -1,0 +1,88 @@
+figure;
+
+subplot(5,3,1)
+plot(out.simout)
+title('Aerodynamic Forces pre rotate')
+
+subplot(5,3,2)
+plot(out.simout1)
+title('Aerodynamic Forces pre rotate')
+
+subplot(5,3,3)
+plot(out.simout2)
+title('Aerodynamic Forces pre rotate')
+
+subplot(5,3,4)
+plot(out.u0)
+title('x-direction: back-to-front')
+xlabel('Time [sec]')
+ylabel('Gust Speed [m/s]')
+
+subplot(5,3,5)
+plot(out.u1)
+title('y-direction: left-to-right')
+xlabel('Time [sec]')
+ylabel('Gust Speed [m/s]')
+
+subplot(5,3,6)
+plot(out.u2)
+title('z-direction: top-to-bottom')
+xlabel('Time [sec]')
+ylabel('Gust Speed [m/s]')
+
+subplot(5,3,7)
+plot(out.Cxb)
+title('C_X')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(5,3,8)
+plot(out.Cyb)
+title('C_Y')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(5,3,9)
+plot(out.Czb)
+title('C_Z')
+xlabel('Time [sec]')
+ylabel('Coefficient [-]')
+
+subplot(5,3,10)
+plot(out.alpha_coeff)
+title('Alpha')
+xlabel('Time [sec]')
+ylabel('alpha [rad]')
+set(gca,'YTick',-2*pi:pi/2:2*pi) 
+set(gca,'YTickLabel',{'-pi/2', '-pi/4', '0','pi/4', 'pi/2'})
+
+subplot(5,3,11)
+plot(out.beta_coeff)
+title('Beta')
+xlabel('Time [sec]')
+ylabel('beta [rad]')
+set(gca,'YTick',-2*pi:pi/2:2*pi) 
+
+subplot(5,3,12)
+plot(out.Faero)
+title('F_aero post rotate')
+xlabel('Time [sec]')
+ylabel('Aerodynamic Force [Nm]')
+
+subplot(5,3,13)
+plot(out.Faerox)
+title('F_aero post rotate')
+xlabel('Time [sec]')
+ylabel('F_x_aero [Nm]')
+
+subplot(5,3,14)
+plot(out.Faeroy)
+title('F_aero post rotate')
+xlabel('Time [sec]')
+ylabel('F_y_aero [Nm]')
+
+subplot(5,3,15)
+plot(out.Faeroz)
+title('F_aero post rotate')
+xlabel('Time [sec]')
+ylabel('F_z_aero [Nm]')
