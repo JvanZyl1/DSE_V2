@@ -448,3 +448,6 @@ R_inv = inv(R_mat);
 alpha_ex = R_inv*[a_lim; a_lim; a_lim];
 M_lim_ex = I_mat*alpha_ex;
 
+%% F_max
+
+
