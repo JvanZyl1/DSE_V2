@@ -113,7 +113,7 @@ props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3',
 
 %% Maximum force
 %Fclim = 25.75;
-Fclim = 3000;
+Fclim = 300*0.1;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
@@ -122,10 +122,10 @@ Fc2_l = -Fclim;
 Fc3_u = Fclim;
 Fc3_l = -Fclim;
 
-Ftlim = 3000;
-Fulim_TF = 5600;
-Fulim_BF = 2600;
-Fulim_Back = 3200;
+Ftlim = 3000*0.6;
+Fulim_TF = 5600*0.6;
+Fulim_BF = 2600*0.6;
+Fulim_Back = 3200*0.6;
 
 %Ftlim = 20;
 %Fulim_TF = 20;

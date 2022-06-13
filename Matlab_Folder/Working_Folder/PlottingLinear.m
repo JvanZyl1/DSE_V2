@@ -3,6 +3,7 @@ plot(out.r)
 xlabel('Time [sec]')
 ylabel('Position [m]')
 title('Position')
+legend('x', 'y', 'z')
 
 subplot(3,1,2)
 plot(out.v)
