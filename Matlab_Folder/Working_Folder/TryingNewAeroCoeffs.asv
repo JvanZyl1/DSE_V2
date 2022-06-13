@@ -396,7 +396,7 @@ rdiff_shard = r0_shard - rfinal_shard;
 
 m_shard = (abs(max(zdata)) + abs(min(zdata)))/(abs(max(ydata)) + abs(min(ydata))); %Gradient of shard in shard frame
 angle_shard = atan(m_shard); %a - y, o  - z
-V_sh_kmhr = 180; %100;
+V_sh_kmhr = 150; %100;
 V0_shard = V_sh_kmhr* 1000/(60*60);
 Vz0_shard = V0_shard*cos(angle_shard);
 Vy0_shard = V0_shard*sin(angle_shard);
@@ -433,9 +433,9 @@ r_0 = [0;0;0];
 
 %% Maximum moments
 a_lim = (0.325^2 /3)^0.5;
-Mx_lim = (I_xx + I_xy + I_xz)*a_lim;
-My_lim = (I_yx + I_yy + I_xz)*a_lim;
-Mz_lim = (I_zx + I_zy + I_zz)*a_lim;
+Mx_lim = (I_xx + I_xy + I_xz)*a_lim
+My_lim = (I_yx + I_yy + I_xz)*a_lim
+Mz_lim = (I_zx + I_zy + I_zz)*a_lim
 
 r_cgseat = [0.8; 0.24; 0.045];
 rxs = 0.8;
@@ -445,6 +445,5 @@ R_mat = [0 rzs -rys;
     -rzs 0 rxs;
     rys -rxs 0];
 R_inv = inv(R_mat);
-alpha_ex = R_inv*[a_lim; a_lim; a_lim];
-M_lim_ex = I_mat*alpha_ex;
+M_lim_ex = 
 
