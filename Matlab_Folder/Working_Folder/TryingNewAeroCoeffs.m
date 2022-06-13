@@ -415,6 +415,10 @@ u0_final = u_0(length(u_0));
 u1_final = u_1(length(u_1));
 u2_final = u_2(length(u_2));
 
+u0_ini = u_0(1);
+u1_ini = u_1(1);
+u2_ini = u_2(1);
+
 %% PID tune linear results
 
 %Fx_pid = [160.734193661502, 6.85755125615993, 923.025793270617, 10.4897155810233];
@@ -450,4 +454,5 @@ M_lim_ex = I_mat*alpha_ex;
 
 %% F_max
 
-
+F_tot_max = 0.325*m;
+F_max = ((0.325^2 /3)^0.5)*m;
