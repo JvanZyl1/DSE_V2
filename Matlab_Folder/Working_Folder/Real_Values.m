@@ -112,8 +112,8 @@ prop_arms = [t1;t2;t3;t4;b1;b2;b3;b4;c1;c2;c3];
 props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3', b3, 'b4', b4, 'c1', c1, 'c2', c2, 'c3', c3);
 
 %% Maximum force
-Fclim = 25.75;
-
+%Fclim = 25.75;
+Fclim = 3000;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
@@ -122,15 +122,15 @@ Fc2_l = -Fclim;
 Fc3_u = Fclim;
 Fc3_l = -Fclim;
 
-%Ftlim = 3000;
-%Fulim_TF = 5600;
-%Fulim_BF = 2600;
-%Fulim_Back = 3200;
+Ftlim = 3000;
+Fulim_TF = 5600;
+Fulim_BF = 2600;
+Fulim_Back = 3200;
 
-Ftlim = 20;
-Fulim_TF = 20;
-Fulim_BF = 20;
-Fulim_Back = 20;
+%Ftlim = 20;
+%Fulim_TF = 20;
+%Fulim_BF = 20;
+%Fulim_Back = 20;
 
 
 Ft1_u = Fulim_TF;
