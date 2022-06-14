@@ -113,7 +113,7 @@ props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3',
 
 %% Maximum force
 %Fclim = 25.75;
-Fclim = 600;
+Fclim = 300;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
