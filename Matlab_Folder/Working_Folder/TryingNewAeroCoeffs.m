@@ -14,7 +14,7 @@ rho = 1.225;
 g = 9.81;
 T = 10.5;
 C_D = 0.6;
-time_delay = 0.1;
+time_delay = 0.01;
 S = 1*1.8;
 fprop = 1000;
 
@@ -455,4 +455,4 @@ M_lim_ex = I_mat*alpha_ex;
 %% F_max
 
 F_tot_max = 0.325*m;
-F_max = ((0.325^2 /3)^0.5)*m;
+F_max = ((0.325^2 /2)^0.5)*m; %In y and z only
