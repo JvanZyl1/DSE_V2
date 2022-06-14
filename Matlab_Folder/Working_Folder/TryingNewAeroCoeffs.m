@@ -113,7 +113,7 @@ props = struct('t1', t1, 't2', t2, 't3', t3, 't4', t4, 'b1', b1, 'b2', b2, 'b3',
 
 %% Maximum force
 %Fclim = 25.75;
-Fclim = 300;
+Fclim = 3000;
 
 Fc1_u = Fclim;
 Fc1_l = -Fclim;
@@ -122,10 +122,10 @@ Fc2_l = -Fclim;
 Fc3_u = Fclim;
 Fc3_l = -Fclim;
 
-Ftlim = 3000;
-Fulim_TF = 5600;
-Fulim_BF = 2600;
-Fulim_Back = 3200;
+Ftlim = 30000;
+Fulim_TF = 56000;
+Fulim_BF = 26000;
+Fulim_Back = 32000;
 
 %Ftlim = 20;
 %Fulim_TF = 20;
@@ -396,7 +396,7 @@ rdiff_shard = r0_shard - rfinal_shard;
 
 m_shard = (abs(max(zdata)) + abs(min(zdata)))/(abs(max(ydata)) + abs(min(ydata))); %Gradient of shard in shard frame
 angle_shard = atan(m_shard); %a - y, o  - z
-V_sh_kmhr = 180; %100;
+V_sh_kmhr = 25; %100;
 V0_shard = V_sh_kmhr* 1000/(60*60);
 Vz0_shard = V0_shard*cos(angle_shard);
 Vy0_shard = V0_shard*sin(angle_shard);
