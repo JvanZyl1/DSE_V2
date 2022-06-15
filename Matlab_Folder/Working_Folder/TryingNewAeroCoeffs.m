@@ -449,7 +449,10 @@ R_mat = [0 rzs -rys;
     -rzs 0 rxs;
     rys -rxs 0];
 R_inv = inv(R_mat);
-alpha_ex = R_inv*[a_lim; a_lim; a_lim];
+alpha_ex = R_mat*[a_lim; a_lim; a_lim];
+r_mag = (rxs^2 + rys^2 + rzs^2);
+alpha_lim = alpha_ex/(r_mag^2)
+norm(alpha_lim)
 M_lim_ex = I_mat*alpha_ex;
 
 %% F_max

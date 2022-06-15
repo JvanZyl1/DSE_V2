@@ -9,6 +9,7 @@ hold off
 zlabel('$C_{X}$ [$~$]', 'Interpreter','Latex', 'fontsize', 16);
 xlabel('$\beta$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
 ylabel('$\alpha$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
+set(gca, 'fontsize', 16)
 
 subplot(3,2,2)
 surf(XI_Cy, YI_Cy, ZI_Cy);shading interp; hold on
@@ -18,6 +19,7 @@ hold off
 zlabel('$C_{Y}$ [$~$]', 'Interpreter','Latex', 'fontsize', 16);
 xlabel('$\beta$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
 ylabel('$\alpha$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
+set(gca, 'fontsize', 16)
 
 subplot(3,2,3)
 surf(XI_Cz, YI_Cz, ZI_Cz);shading interp; hold on
@@ -27,6 +29,7 @@ hold off
 zlabel('$C_{Z}$ [$~$]', 'Interpreter','Latex', 'fontsize', 16);
 xlabel('$\beta$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
 ylabel('$\alpha$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
+set(gca, 'fontsize', 16)
 
 subplot(3,2,4)
 surf(XI_p, YI_p, ZI_p);shading interp; hold on
@@ -36,6 +39,7 @@ hold off
 zlabel('$C_{m_p}$ [$~$]', 'Interpreter','Latex', 'fontsize', 16);
 xlabel('$\beta$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
 ylabel('$\alpha$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
+set(gca, 'fontsize', 16)
 
 subplot(3,2,5)
 surf(XI_q,YI_q,ZI_q); shading interp; hold on
@@ -45,6 +49,7 @@ hold off
 zlabel('$C_{m_q}$ [$~$]', 'Interpreter','Latex', 'fontsize', 16);
 xlabel('$\beta$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
 ylabel('$\alpha$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
+set(gca, 'fontsize', 16)
 
 subplot(3,2,6)
 surf(XI_r, YI_r, ZI_r);shading interp; hold on
@@ -54,6 +59,7 @@ hold off
 zlabel('$C_{m_r}$ [$~$]', 'Interpreter','Latex', 'fontsize', 16);
 xlabel('$\beta$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
 ylabel('$\alpha$ [$\deg$]', 'Interpreter','Latex', 'fontsize', 16);
+set(gca, 'fontsize', 16)
 
 
 
